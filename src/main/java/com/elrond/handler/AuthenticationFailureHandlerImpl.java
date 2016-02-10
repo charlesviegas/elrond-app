@@ -14,11 +14,16 @@ public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFai
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationFailureHandlerImpl.class);
 
-    private String defaultFailureUrl = "/login?error";
+    public AuthenticationFailureHandlerImpl(String failureUrl){
+        super();
+        super.setDefaultFailureUrl(failureUrl);
+    }
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         AuthenticationException e) throws IOException, ServletException {
+
 
         logger.info("O usuário {}, IP {} não fez login com sucesso", httpServletRequest.getParameter("username"), httpServletRequest.getRemoteAddr());
         super.onAuthenticationFailure(httpServletRequest, httpServletResponse, e);
