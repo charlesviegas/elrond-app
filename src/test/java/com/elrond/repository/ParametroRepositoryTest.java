@@ -1,35 +1,21 @@
 package com.elrond.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
-
-import com.elrond.Application;
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.elrond.entity.Parametro;
+import com.elrond.utils.RespositoryTest;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-/*
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-        TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@RespositoryTest
 @DatabaseSetup(ParametroRepositoryTest.DATASET)
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = {ParametroRepositoryTest.DATASET})
-@DirtiesContext
-@WebAppConfiguration
-*/
 public class ParametroRepositoryTest {
 
     protected static final String DATASET = "classpath:datasets/parametros.xml";
@@ -37,10 +23,24 @@ public class ParametroRepositoryTest {
     @Autowired
     private ParametroRepository parametroRepository;
 
-    //@Test
-    public void testaNulo() {
+    @Test
+    public void testCosultaPorFiltro() {
         assertThat(parametroRepository.buscarParametroPorFiltro("spring"))
                 .hasSize(4);
+        assertThat(parametroRepository.buscarParametroPorFiltro("Senha"))
+                .hasSize(1);
+    }
+
+    @Test
+    public void testFindAll() {
+        assertThat(parametroRepository.findAll())
+                .hasSize(4);
+    }
+
+    @Test
+    public void testFindOne() {
+        assertThat(parametroRepository.findOne(1L))
+                .doesNotHaveSameClassAs(Parametro.class);
     }
 
 }
