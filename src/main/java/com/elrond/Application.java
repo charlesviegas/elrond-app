@@ -22,6 +22,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+
     @Bean
     public CommandLineRunner demo(ParametroRepository parametroRepository,
                                   UsuarioRepository usuarioRepository,
@@ -43,4 +44,5 @@ public class Application {
             log.info("Usuario consultor importado com sucesso");
         };
     }
+
 }

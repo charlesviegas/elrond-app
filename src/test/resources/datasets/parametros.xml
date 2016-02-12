@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <parametro id="1" nome="spring.datasource.driverClassName" valor="org.postgresql.Driver" descricao="Classe java que implementa o driver jdbc" />
+    <parametro id="2" nome="spring.datasource.url" valor="jdbc:postgresql://localhost/elrond" descricao="Url de conexão do driver jdbc" />
+    <parametro id="3" nome="spring.datasource.user" valor="admin" descricao="Nome do usuário que irá conectar com o banco de dados" />
+    <parametro id="4" nome="spring.datasource.password" valor="senha" descricao="Senha do usuário que irá conectar com o banco de dados" />
+</dataset>

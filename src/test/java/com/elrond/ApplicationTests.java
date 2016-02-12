@@ -28,7 +28,7 @@ public class ApplicationTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
 
-	@Test
+	//@Test()
 	public void contextLoads() throws Exception {
 		//this.mockMvc.perform(get("/api/parametro").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
 		//		.andExpect(status().isOk())
