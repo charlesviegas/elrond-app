@@ -2,6 +2,7 @@ package com.elrond.config;
 
 import com.elrond.handler.AuthenticationFailureHandlerImpl;
 import com.elrond.handler.AuthenticationSuccessHandlerImpl;
+import com.elrond.handler.CsrfFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -49,7 +50,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                     .exceptionHandling()
                     .accessDeniedPage("/403")
                 .and()
-                    .csrf().disable();
+                    .csrf();//.disable().addFilterBefore(new CsrfFilter(), CsrfFilter.class);
     }
 
 }
